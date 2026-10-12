@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TenderReady — Government Procurement Starter Kit</title>
+<meta name="description" content="AI prompts and compliance checklists for South African SMMEs bidding government and parastatal RFQs. Built from real quotes to UFH, WSU and BCMM. From R200, once-off.">
+<meta property="og:title" content="TenderReady — Government Procurement Starter Kit">
+<meta property="og:description" content="Screen it, source it, quote it — then win it. From R200, once-off.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#ece5d2">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+:root{
+  --ink:#17233a;
+  --ink-soft:#4b5568;
+  --paper:#ece5d2;
+  --paper-alt:#f7f3e8;
+  --paper-deep:#ddd3b5;
+  --stamp:#a3402c;
+  --stamp-dark:#7c2f21;
+  --seal:#8a6a26;
+  --seal-bright:#a5822f;
+  --line:#c9bfa0;
+  --line-strong:#a89d7c;
+  --good:#3f6b3f;
+  --font-display:'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:'IBM Plex Sans', -apple-system, Segoe UI, sans-serif;
+  --font-mono:'IBM Plex Mono', 'Courier New', monospace;
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#ece5d2;
+    --ink-soft:#b9b096;
+    --paper:#15130f;
+    --paper-alt:#1c1a15;
+    --paper-deep:#0e0d0a;
+    --stamp:#d3654a;
+    --stamp-dark:#e8836a;
+    --seal:#c9a04a;
+    --seal-bright:#dab868;
+    --line:#3a362a;
+    --line-strong:#4d4736;
+    --good:#7fae7f;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#ece5d2;
+  --ink-soft:#b9b096;
+  --paper:#15130f;
+  --paper-alt:#1c1a15;
+  --paper-deep:#0e0d0a;
+  --stamp:#d3654a;
+  --stamp-dark:#e8836a;
+  --seal:#c9a04a;
+  --seal-bright:#dab868;
+  --line:#3a362a;
+  --line-strong:#4d4736;
+  --good:#7fae7f;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;display:block;}
+a{color:inherit;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+
+/* ---------- texture ---------- */
+.page-texture{
+  background-image:
+    repeating-linear-gradient(transparent, transparent 27px, color-mix(in srgb, var(--line) 35%, transparent) 28px),
+    linear-gradient(var(--paper), var(--paper));
+}
+
+/* ---------- header ---------- */
+header.site{
+  border-bottom:1.5px solid var(--line-strong);
+  padding:18px 0;
+}
+.site-head-inner{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.wordmark{
+  font-family:var(--font-mono);
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+.wordmark span{color:var(--stamp);}
+.file-ref{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--ink-soft);
+  letter-spacing:0.04em;
+}
+
+/* ---------- hero ---------- */
+.hero{padding:64px 0 40px;position:relative;}
+.hero-kicker{
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:18px;
+}
+.hero-kicker::before{content:"";width:26px;height:1.5px;background:var(--stamp);display:inline-block;}
+.hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:start;}
+h1.hero-title{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.3rem, 4.4vw, 3.6rem);
+  line-height:1.04;
+  letter-spacing:-0.01em;
+  margin:0 0 20px;
+  text-wrap:balance;
+}
+h1.hero-title em{font-style:italic;color:var(--stamp);}
+.hero-sub{
+  font-size:1.08rem;
+  color:var(--ink-soft);
+  max-width:52ch;
+  margin:0 0 28px;
+}
+.hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.btn{
+  font-family:var(--font-mono);
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:0.03em;
+  text-decoration:none;
+  padding:13px 22px;
+  border-radius:2px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1.5px solid var(--ink);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn-primary{background:var(--stamp);border-color:var(--stamp);color:#fdf8ec;}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 0 var(--stamp-dark);}
+.btn-ghost{background:transparent;color:var(--ink);}
+.btn-ghost:hover{background:color-mix(in srgb, var(--ink) 8%, transparent);}
+.hero-note{font-size:12px;color:var(--ink-soft);font-family:var(--font-mono);margin-top:12px;}
+
+/* stamp graphic */
+.stamp-seal{
+  border:2.5px solid var(--stamp);
+  color:var(--stamp);
+  border-radius:50%;
+  width:158px;height:158px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  font-family:var(--font-mono);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:0.09em;
+  text-transform:uppercase;
+  transform:rotate(-9deg);
+  margin:6px auto 0;
+  position:relative;
+  opacity:0.92;
+}
+.stamp-seal::before{
+  content:"";
+  position:absolute;inset:8px;
+  border:1px solid var(--stamp);
+  border-radius:50%;
+}
+.stamp-seal b{display:block;font-size:20px;margin-bottom:2px;letter-spacing:0.02em;}
+.hero-aside{
+  border:1.5px solid var(--line-strong);
+  background:var(--paper-alt);
+  padding:22px 20px;
+}
+.hero-aside-title{
+  font-family:var(--font-mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--ink-soft);
+  margin-bottom:12px;
+}
+.field-list{list-style:none;margin:0;padding:0;font-family:var(--font-mono);font-size:12.5px;}
+.field-list li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line);gap:10px;}
+.field-list li:last-child{border-bottom:none;}
+.field-list b{font-weight:600;text-align:right;}
+
+/* ---------- section shell ---------- */
+section{padding:56px 0;border-top:1px solid var(--line);}
+.section-head{margin-bottom:32px;max-width:62ch;}
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--stamp);
+  margin:0 0 10px;
+}
+h2{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(1.5rem,2.6vw,2.05rem);
+  margin:0 0 10px;
+  text-wrap:balance;
+}
+.section-lede{color:var(--ink-soft);font-size:1rem;margin:0;}
+
+/* ---------- credibility strip ---------- */
+.cred-strip{
+  display:flex;gap:0;flex-wrap:wrap;
+  border:1px solid var(--line-strong);
+}
+.cred-item{
+  flex:1 1 200px;
+  padding:18px 20px;
+  border-right:1px solid var(--line);
+  font-family:var(--font-mono);
+  font-size:12px;
+}
+.cred-item:last-child{border-right:none;}
+.cred-item .n{
+  display:block;font-family:var(--font-display);font-size:1.6rem;font-weight:600;color:var(--stamp);margin-bottom:2px;
+}
+.cred-item .label{color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;font-size:10.5px;}
+
+/* ---------- ledger / whats inside ---------- */
+.ledger{border:1px solid var(--line-strong);}
+.ledger-row{
+  display:grid;
+  grid-template-columns:44px 1fr 90px;
+  gap:16px;
+  padding:18px 20px;
+  border-bottom:1px solid var(--line);
+  align-items:start;
+}
+.ledger-row:last-child{border-bottom:none;}
+.ledger-row:nth-child(even){background:var(--paper-alt);}
+.ledger-no{font-family:var(--font-mono);color:var(--ink-soft);font-size:13px;padding-top:2px;}
+.ledger-name{font-family:var(--font-display);font-weight:600;font-size:1.03rem;margin:0 0 4px;}
+.ledger-desc{font-size:13.5px;color:var(--ink-soft);margin:0;}
+.ledger-tier{
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  text-align:right;
+  padding-top:4px;
+  color:var(--ink-soft);
+}
+.ledger-tier.t1{color:var(--ink);}
+.ledger-tier.t2{color:var(--stamp);}
+.ledger-tier.t3{color:var(--seal);}
+
+/* ---------- pricing ---------- */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid var(--ink);}
+.tier{
+  padding:30px 24px 26px;
+  border-right:1.5px solid var(--ink);
+  display:flex;flex-direction:column;
+  position:relative;
+}
+.tier:last-child{border-right:none;}
+.tier.featured{background:var(--paper-alt);}
+.tier-flag{
+  position:absolute;top:0;right:0;
+  background:var(--seal);color:#fdf8ec;
+  font-family:var(--font-mono);
+  font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:5px 10px;
+}
+.tier-name{
+  font-family:var(--font-mono);
+  font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px;
+}
+.tier-price{
+  font-family:var(--font-display);font-weight:700;font-size:2.4rem;line-height:1;margin:0 0 4px;
+  font-variant-numeric:tabular-nums;
+}
+.tier-price sup{font-size:0.9rem;font-weight:500;}
+.tier-unit{font-size:12px;color:var(--ink-soft);margin:0 0 22px;}
+.tier-includes{list-style:none;margin:0 0 24px;padding:0;flex:1;}
+.tier-includes li{
+  font-size:13.5px;padding:7px 0;border-top:1px dashed var(--line);
+  display:flex;gap:8px;
+}
+.tier-includes li:first-child{border-top:none;}
+.tier-includes li::before{content:"✓";color:var(--good);font-weight:700;flex:none;}
+.tier-cta{
+  font-family:var(--font-mono);font-size:12.5px;font-weight:600;text-align:center;
+  padding:12px;border:1.5px solid var(--ink);text-decoration:none;color:var(--ink);
+  letter-spacing:0.03em;
+}
+.tier.featured .tier-cta{background:var(--stamp);border-color:var(--stamp);color:#fdf8ec;}
+.tier-cta:hover{filter:brightness(0.94);}
+
+/* ---------- process ---------- */
+.process{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line-strong);border-left:1px solid var(--line-strong);}
+.proc-step{
+  padding:20px 18px;border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
+}
+.proc-step.next{background:var(--paper-alt);}
+.proc-step .k{font-family:var(--font-mono);font-size:11px;color:var(--stamp);letter-spacing:0.08em;margin-bottom:8px;}
+.proc-step.next .k{color:var(--seal);}
+.proc-step h3{font-family:var(--font-display);font-size:1.02rem;margin:0 0 6px;font-weight:600;}
+.proc-step p{font-size:12.8px;color:var(--ink-soft);margin:0;}
+.proc-step .soon{
+  display:inline-block;font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--seal);border:1px solid var(--seal);padding:2px 6px;border-radius:2px;margin-bottom:8px;
+}
+
+/* ---------- quoteforge funnel ---------- */
+.qf-section{background:var(--paper-alt);}
+.qf-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;}
+.qf-eyebrow{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--seal);
+  border:1px solid var(--seal);display:inline-block;padding:4px 10px;margin-bottom:14px;
+}
+.qf-grid h2{margin-bottom:14px;}
+.qf-copy{color:var(--ink-soft);font-size:1rem;max-width:56ch;margin:0 0 14px;}
+.qf-list{list-style:none;margin:0 0 22px;padding:0;font-size:13.5px;}
+.qf-list li{padding:6px 0;display:flex;gap:8px;}
+.qf-list li::before{content:"→";color:var(--seal);flex:none;}
+.qf-card{
+  border:1.5px solid var(--ink);background:var(--paper);padding:26px 24px;
+}
+.qf-card-label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 8px;}
+.qf-card-title{font-family:var(--font-display);font-weight:600;font-size:1.3rem;margin:0 0 10px;}
+.qf-card p{font-size:13px;color:var(--ink-soft);margin:0 0 18px;}
+.qf-cta{
+  display:block;text-align:center;font-family:var(--font-mono);font-size:13px;font-weight:600;letter-spacing:0.03em;
+  background:var(--seal);color:#fdf8ec;border:1.5px solid var(--seal);padding:13px;text-decoration:none;
+}
+.qf-cta:hover{filter:brightness(0.95);}
+.qf-note{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);margin:12px 0 0;text-align:center;}
+
+/* ---------- faq ---------- */
+.faq-item{border-bottom:1px solid var(--line);padding:18px 0;}
+.faq-item:first-child{padding-top:0;}
+.faq-q{font-family:var(--font-display);font-weight:600;font-size:1.02rem;margin:0 0 6px;}
+.faq-a{font-size:14px;color:var(--ink-soft);margin:0;max-width:64ch;}
+
+/* ---------- footer ---------- */
+footer{
+  border-top:1.5px solid var(--ink);
+  padding:32px 0 40px;
+  background:var(--paper-deep);
+}
+.foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11.5px;color:var(--ink-soft);}
+.foot-col b{display:block;color:var(--ink);font-size:12px;margin-bottom:6px;letter-spacing:0.04em;text-transform:uppercase;}
+.foot-col div{margin-bottom:3px;}
+.disclaimer{
+  margin-top:24px;padding-top:18px;border-top:1px dashed var(--line-strong);
+  font-family:var(--font-mono);font-size:10.5px;color:var(--ink-soft);max-width:80ch;
+}
+
+@media (max-width:760px){
+  .hero-grid{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .tier{border-right:none;border-bottom:1.5px solid var(--ink);}
+  .tier:last-child{border-bottom:none;}
+  .process{grid-template-columns:1fr 1fr;}
+  .qf-grid{grid-template-columns:1fr;}
+  .cred-strip{flex-direction:column;}
+  .cred-item{border-right:none;border-bottom:1px solid var(--line);}
+  .ledger-row{grid-template-columns:32px 1fr;}
+  .ledger-tier{grid-column:2;text-align:left;}
+}
+@media (prefers-reduced-motion:reduce){
+  .btn{transition:none;}
+}
+
+/* ---------- video ---------- */
+.video-frame{border:1.5px solid var(--ink);background:var(--paper-deep);aspect-ratio:16/9;max-width:760px;position:relative;overflow:hidden;}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+/* ---------- sticky mobile CTA ---------- */
+.sticky-cta{display:none;}
+@media (max-width:760px){
+  .sticky-cta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--stamp);color:#fdf8ec;text-align:center;
+    font-family:var(--font-mono);font-weight:600;font-size:13px;padding:14px;text-decoration:none;}
+  footer{padding-bottom:72px;}
+}
+</style>
+</head>
+<body>
+<div class="page-texture">
+
+<header class="site">
+  <div class="wrap site-head-inner">
+    <div class="wordmark">Amanani <span>&middot;</span> TenderReady</div>
+    <div class="file-ref">FORM REF: TR&#8209;2026 &nbsp;/&nbsp; ISSUED EAST LONDON, EC</div>
+  </div>
+</header>
+
+<section class="hero" style="border-top:none;">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="hero-kicker">Built for South African SMMEs</p>
+      <h1 class="hero-title">Screen it, source it,<br>quote it — <em>then win it.</em></h1>
+      <p class="hero-sub">Six copy-paste AI prompts and two compliance checklists for bidding government and parastatal RFQs, written from real quotes submitted to UFH, WSU and BCMM — not a generic template pack.</p>
+      <div class="hero-cta-row">
+        <a class="btn btn-primary" href="#pricing">See the three tiers</a>
+        <a class="btn btn-ghost" href="#whats-inside">What's inside &darr;</a>
+        <a class="btn btn-ghost" href="https://pikachu29.gumroad.com/l/fhugpt">Join QuoteForge waitlist &rarr;</a>
+      </div>
+      <p class="hero-note">No subscription. Pay once per tier, use on every RFQ after.</p>
+    </div>
+    <div>
+      <div class="hero-aside">
+        <p class="hero-aside-title">Supplier Declaration</p>
+        <ul class="field-list">
+          <li><span>Issued by</span><b>Amanani (Pty) Ltd</b></li>
+          <li><span>Reg. No.</span><b>2019/045663/07</b></li>
+          <li><span>CSD No.</span><b>MAAA0761124</b></li>
+          <li><span>Location</span><b>East London, EC</b></li>
+          <li><span>Basis</span><b>Operational, not theory</b></li>
+        </ul>
+        <div class="stamp-seal"><span><b>FIELD</b>TESTED<br>ON REAL RFQs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cred-strip">
+      <div class="cred-item"><span class="n">3</span><span class="label">Entities bid &amp; won</span> UFH &middot; WSU &middot; BCMM</div>
+      <div class="cred-item"><span class="n">6</span><span class="label">Operator prompts</span> Screen &rarr; Quote &rarr; Red&#8209;flag</div>
+      <div class="cred-item"><span class="n">2</span><span class="label">Compliance checklists</span> CSD setup &amp; per&#8209;quote</div>
+      <div class="cred-item"><span class="n">R200</span><span class="label">Entry price</span> Starter tier</div>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Watch first</p>
+      <h2>One real RFQ, screened in under five minutes</h2>
+      <p class="section-lede">See the Screening Prompt run on a live government RFQ.</p>
+    </div>
+    <!-- Replace VIDEO_ID with the YouTube ID once the video is up -->
+    <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="TenderReady walkthrough" loading="lazy" allowfullscreen></iframe></div>
+  </div>
+</section>
+
+<section id="whats-inside">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Contents</p>
+      <h2>What's inside the kit</h2>
+      <p class="section-lede">Eight documents in total. Each prompt is written to be pasted into any AI chat tool with your own RFQ — no software to install, no account to create.</p>
+    </div>
+    <div class="ledger">
+      <div class="ledger-row">
+        <div class="ledger-no">01</div>
+        <div><p class="ledger-name">RFQ Screening Prompt</p><p class="ledger-desc">A five-minute go/no-go read on any RFQ before you spend hours pricing it — scope, compliance gates, closing date, and red flags.</p></div>
+        <div class="ledger-tier t1">Tier 1</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-no">02</div>
+        <div><p class="ledger-name">CSD Compliance Checklist</p><p class="ledger-desc">Registration setup and a per-quote pre-submission check — the same sequence used to catch a lapsed document before it disqualifies a quote.</p></div>
+        <div class="ledger-tier t1">Tier 1</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-no">03</div>
+        <div><p class="ledger-name">Supplier Sourcing Prompt</p><p class="ledger-desc">Turns a line item into a real, priced supplier lead with a category markup guide — never a guessed number.</p></div>
+        <div class="ledger-tier t2">Tier 2</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-no">04</div>
+        <div><p class="ledger-name">Bid Decision Guide</p><p class="ledger-desc">A four-step framework — deliverability, price, cash-flow fit, cost of walking away — for the moment before you commit hours to a quote.</p></div>
+        <div class="ledger-tier t2">Tier 2</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-no">05</div>
+        <div><p class="ledger-name">Quoting Workflow Prompt</p><p class="ledger-desc">The full extract &rarr; screen &rarr; source &rarr; price &rarr; compliance-check sequence for one submission-ready quote, step by step.</p></div>
+        <div class="ledger-tier t3">Tier 3</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-no">06</div>
+        <div><p class="ledger-name">Red Flag Prompt</p><p class="ledger-desc">Checks an RFQ for brand-locked specs, impossible timelines, fee requests and other signs it was never a genuine opportunity.</p></div>
+        <div class="ledger-tier t3">Tier 3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Pricing</p>
+      <h2>Three tiers, buy once</h2>
+      <p class="section-lede">Start with the screening basics, or take the full workflow used to build every Amanani quote end to end.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="tier">
+        <p class="tier-name">Starter</p>
+        <p class="tier-price">R200</p>
+        <p class="tier-unit">once-off &middot; instant download</p>
+        <ul class="tier-includes">
+          <li>RFQ Screening Prompt</li>
+          <li>CSD Compliance Checklist</li>
+          <li>Styled PDF, ready to use</li>
+        </ul>
+        <a class="tier-cta" href="https://pikachu29.gumroad.com/l/lakow">Get Starter</a>
+      </div>
+      <div class="tier featured">
+        <span class="tier-flag">Most complete for active bidders</span>
+        <p class="tier-name">Core</p>
+        <p class="tier-price">R497</p>
+        <p class="tier-unit">once-off &middot; instant download</p>
+        <ul class="tier-includes">
+          <li>Everything in Starter</li>
+          <li>Supplier Sourcing Prompt</li>
+          <li>Bid Decision Guide</li>
+          <li>Category markup reference table</li>
+        </ul>
+        <a class="tier-cta" href="https://pikachu29.gumroad.com/l/amirc">Get Core</a>
+      </div>
+      <div class="tier">
+        <p class="tier-name">Full Kit</p>
+        <p class="tier-price">R1200</p>
+        <p class="tier-unit">once-off &middot; instant download</p>
+        <ul class="tier-includes">
+          <li>Everything in Core</li>
+          <li>Quoting Workflow Prompt</li>
+          <li>Red Flag Prompt</li>
+          <li>Full end-to-end quote-building process</li>
+        </ul>
+        <a class="tier-cta" href="https://pikachu29.gumroad.com/l/zrvifh">Get Full Kit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How you'll use it</p>
+      <h2>From RFQ inbox to submitted quote</h2>
+    </div>
+    <div class="process">
+      <div class="proc-step"><p class="k">01</p><h3>Screen</h3><p>Paste the RFQ. Get scope, compliance gates and a go/no-go before you invest time.</p></div>
+      <div class="proc-step"><p class="k">02</p><h3>Source</h3><p>Find real suppliers and confirm prices — flagged, never guessed.</p></div>
+      <div class="proc-step"><p class="k">03</p><h3>Quote</h3><p>Build the priced, compliant document line by line, footer included.</p></div>
+      <div class="proc-step"><p class="k">04</p><h3>Submit</h3><p>Run the final compliance check before the closing date and time.</p></div>
+      <div class="proc-step next"><span class="soon">Coming soon</span><h3>Automate</h3><p>QuoteForge runs steps 01&ndash;04 for you automatically. Join the waitlist below.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="qf-section">
+  <div class="wrap">
+    <div class="qf-grid">
+      <div>
+        <p class="qf-eyebrow">Built by the same team</p>
+        <h2>What's next: QuoteForge</h2>
+        <p class="qf-copy">This Kit is the manual version &mdash; prompts you run yourself, one RFQ at a time. QuoteForge is the automated version we're building next: paste in an RFQ, get a compliant, priced, ready-to-submit quote out. No prompting required.</p>
+        <ul class="qf-list">
+          <li>Same screening, sourcing and compliance logic as TenderReady &mdash; built into software instead of a prompt you paste.</li>
+          <li>Waitlist members get first access and founding-member pricing that won't be offered again after launch.</li>
+          <li>Every RFQ you run through the Kit today is exactly the workflow QuoteForge will do for you.</li>
+        </ul>
+      </div>
+      <div class="qf-card">
+        <p class="qf-card-label">Early access</p>
+        <p class="qf-card-title">Join the QuoteForge waitlist</p>
+        <p>Free to join &mdash; pay what you want, R0 is fine. First access and founding pricing when it opens.</p>
+        <a class="qf-cta" href="https://pikachu29.gumroad.com/l/fhugpt">Join the waitlist</a>
+        <p class="qf-note">No spam &mdash; one email when early access opens.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Questions</p>
+      <h2>Before you buy</h2>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Do I need any software?</p>
+      <p class="faq-a">No. Every prompt is plain text you paste into any AI chat tool you already use — ChatGPT, Claude, or similar. The checklists and guides are PDFs you read and follow directly.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Is this specific to one industry or supply category?</p>
+      <p class="faq-a">No — the prompts work for any RFQ category. The markup reference table in Tier 2 and 3 covers lab equipment, IT, furniture, PPE, stationery, CCTV, food & beverage, and specialised items; you can edit it to your own categories.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Who actually wrote this?</p>
+      <p class="faq-a">Amanani (Pty) Ltd, a registered CSD supplier actively bidding and winning RFQs with University of Fort Hare, Walter Sisulu University and Buffalo City Metropolitan Municipality. Every step reflects a real disqualification risk or pricing mistake encountered running that business — not generic advice.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can I upgrade from Starter to Core or Full Kit later?</p>
+      <p class="faq-a">Yes — email the address below with your original order and you'll be sent the difference.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <b>Issued by</b>
+        <div>Amanani (Pty) Ltd</div>
+        <div>Reg 2019/045663/07</div>
+        <div>CSD MAAA0761124</div>
+      </div>
+      <div class="foot-col">
+        <b>Contact</b>
+        <div>Simthembiledotwana2@gmail.com</div>
+        <div>082 800 7978</div>
+      </div>
+      <div class="foot-col">
+        <b>Address</b>
+        <div>14 Siduli Street</div>
+        <div>East London, Eastern Cape</div>
+      </div>
+    </div>
+    <p class="disclaimer">Licensed for single-business use by the purchaser only. No resale, redistribution, or republishing of these documents or their contents, in whole or in part, in any format. &copy; 2026 Amanani (Pty) Ltd. All rights reserved.</p>
+    <p class="disclaimer">Not legal, tax, or investment advice. Compliance requirements change — always verify current CSD, tax clearance and BBBEE rules against www.csd.gov.za and the issuing entity's own RFQ conditions before submitting a quote.</p>
+  </div>
+</footer>
+
+<a class="sticky-cta" href="#pricing">Get TenderReady from R200</a>
+
+</div>
+</body>
+</html>
