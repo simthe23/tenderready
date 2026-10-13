@@ -67,7 +67,8 @@ def page(title, desc, canonical, body, extra_head=""):
 <meta property="og:type" content="article">
 <meta property="og:url" content="{canonical}">
 <link rel="stylesheet" href="style.css">
-{extra_head}</head>
+{extra_head}<!-- HUBSPOT_TRACKING -->
+</head>
 <body>
 <header class="site"><div class="wrap head-inner">
 <a class="wordmark" href="../index.html">Amanani <span>&middot;</span> TenderReady</a>
@@ -104,7 +105,7 @@ def render_post(p):
 <p><b>Stop losing quotes before price is compared.</b> TenderReady is a set of AI prompts and compliance checklists built from real UFH, WSU and BCMM quotes. {name} tier is {price}, once-off.</p>
 <a class="btn" href="{utm(link, p['slug'])}">Get {name} &mdash; {price}</a>
 </div>
-<!-- HUBSPOT_FORM: embed the free checklist sign-up form here once it exists -->
+<!-- HUBSPOT_FORM -->
 <h2>More guides</h2>
 <ul class="more">{more}</ul>
 <p class="disclaimer">Not legal, tax or investment advice. Procurement rules and thresholds change: always verify against www.csd.gov.za, National Treasury and the issuing entity's own RFQ conditions before you submit a quote.</p>
