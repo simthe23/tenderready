@@ -4,7 +4,9 @@ from pathlib import Path
 import build_site
 
 cfg_path = build_site.CONFIG
-assert not cfg_path.exists(), "remove hubspot.json before running this test"
+real = cfg_path.read_text() if cfg_path.exists() else None
+if real is not None:
+    cfg_path.unlink()
 
 build_site.build()
 assert "js.hs-scripts.com" not in Path("index.html").read_text(encoding="utf-8"), "tracking must be off without config"
@@ -14,11 +16,13 @@ try:
     build_site.build()
     home = Path("index.html").read_text(encoding="utf-8")
     post = Path("blog/how-to-register-on-csd.html").read_text(encoding="utf-8")
-    assert "//js.hs-scripts.com/1234567.js" in home and "//js.hs-scripts.com/1234567.js" in post
+    assert "//js-eu1.hs-scripts.com/1234567.js" in home and "//js-eu1.hs-scripts.com/1234567.js" in post
     assert 'region:"eu1"' in home and 'region:"eu1"' in post
     assert "HubSpot analytics cookies" in home
     assert "HUBSPOT_FORM" not in home and "HUBSPOT_TRACKING" not in post
 finally:
     cfg_path.unlink()
+    if real is not None:
+        cfg_path.write_text(real)
     build_site.build()
 print("OK")

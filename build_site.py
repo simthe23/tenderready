@@ -42,13 +42,18 @@ def load_config():
     return cfg
 
 
+def host(cfg, base):
+    """EU accounts load scripts from js-eu1.* hosts; na1 uses js.*"""
+    return f"js-{cfg['region']}.{base}" if cfg["region"] == "eu1" else f"js.{base}"
+
+
 def tracking(cfg):
-    return f'<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/{cfg["portal_id"]}.js"></script>'
+    return f'<script type="text/javascript" id="hs-script-loader" async defer src="//{host(cfg, "hs-scripts.com")}/{cfg["portal_id"]}.js"></script>'
 
 
 def form_block(cfg, blog=False):
     embed = (
-        '<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>\n'
+        f'<script charset="utf-8" type="text/javascript" src="//{host(cfg, "hsforms.net")}/forms/embed/v2.js"></script>\n'
         f'<script>hbspt.forms.create({{region:"{cfg["region"]}",portalId:"{cfg["portal_id"]}",formId:"{cfg["form_id"]}"}});</script>'
     )
     head = (
