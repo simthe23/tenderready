@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://simthe23.github.io/tenderready/sitemap.xml
